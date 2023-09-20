@@ -35,7 +35,8 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char *av[])
 		{
 			free(lineptr);
 			exit(EOF); }
-		else if (_strcmp(lineptr, "\n") == 0)
+		else if (_strcmp(lineptr, "\n") == 0 || _strcmp(lineptr, " \n") == 0
+		|| _strcmp(lineptr, "	\n") == 0 || _strcmp(lineptr, "  \n") == 0)
 			continue;
 		if (_strchr(lineptr, '/') != NULL)
 			z = 1;

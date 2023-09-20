@@ -7,13 +7,13 @@
 */
 char **get_token(char *s, char *d)
 {
-	int x, i = 0;
+	int i = 0;
 	char *token;
 	char *str;
 	char **tokens;
 
-	x = countStringOccurrences(s, d);
-	tokens = malloc((x + 2) * sizeof(char *));
+	/*x = countStringOccurrences(s, d);*/
+	tokens = malloc(10000 * sizeof(char *));
 	if (tokens == NULL)
 		return (NULL);
 	if (s == NULL)
