@@ -28,7 +28,7 @@ void non_interact_file(char *av[])
 			exit(1);
 		}
 
-		if (strchr(str, '/') != NULL)
+		if (_strchr(str, '/') != NULL)
 			z = 1;
 		else
 			z = 0;
