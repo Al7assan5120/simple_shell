@@ -33,6 +33,7 @@ void non_interact_file(char *av[])
 		else
 			z = 0;
 		f = get_token(ex_str, d);
+		is_builtin(f);
 		execute(f, z);
 	}
 }

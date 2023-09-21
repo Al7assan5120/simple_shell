@@ -7,7 +7,7 @@
  */
 int main(__attribute__((unused)) int ac,  __attribute__((unused)) char *av[])
 {
-	char *lineptr = NULL, *d = " \n\t";
+	char *lineptr = NULL, *d = "_ \n\t", *enp = " ";
 	size_t len = 0;
 	ssize_t x;
 	char **f;
@@ -35,8 +35,8 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char *av[])
 		{
 			free(lineptr);
 			exit(EOF); }
-		else if (_strcmp(lineptr, "\n") == 0 || _strcmp(lineptr, " \n") == 0
-		|| _strcmp(lineptr, "	\n") == 0 || _strcmp(lineptr, "  \n") == 0)
+		else if (_strcmp(lineptr, "\n") == 0 || _strcmp(lineptr, "	\n") == 0
+		|| strstr(lineptr, enp) == lineptr)
 			continue;
 		if (_strchr(lineptr, '/') != NULL)
 			z = 1;

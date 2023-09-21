@@ -40,5 +40,6 @@ char *_strchr(char *s, char c);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 char *_fgets(char *string, int n, FILE *s);
 void _free(int count, ...);
+void env(void);
 
 #endif

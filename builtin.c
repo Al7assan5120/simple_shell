@@ -6,20 +6,27 @@
  */
 int is_builtin(char **f)
 {
-	char *arr [] = {"exit", "cd"};
+	char *arr [] = {"exit", "cd", "env"};
 	int i;
 	/*int x;*/
-	for (i = 0; _strcmp(f[0], arr[i]) == 0; i++)
+	for (i = 0; i < 3 ; i++)
 	{
-		switch (i)
-		{
-		case 0:
-			exit(EXIT_SUCCESS);
+		if (_strcmp(f[0], arr[i]) == 0)
 			break;
-		case 1:
-			/*x = chdir (f[1]);*/
-			break;
-		}
 	}
+
+	switch (i)
+	{
+	case 0:
+		exit(EXIT_SUCCESS);
+		break;
+	case 1:
+		/*x = chdir (f[1]);*/
+		break;
+	case 2:
+		env();
+		break;
+	}
+
 	return (0);
 }
