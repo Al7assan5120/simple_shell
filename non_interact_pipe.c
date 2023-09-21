@@ -12,8 +12,8 @@ void non_interact_pipe(void)
 
 	str_pipe = _fgets(line, sizeof(line), stdin);
 	if (_strcmp(str_pipe, "\n") == 0 || _strcmp(str_pipe, " \n") == 0
-		|| _strcmp(str_pipe, "	\n") == 0 || _strcmp(str_pipe, "  \n") == 0)
-			exit(1);
+	|| _strcmp(str_pipe, "	\n") == 0 || _strcmp(str_pipe, "  \n") == 0)
+		exit(1);
 	if (_strchr(str_pipe, '/') != NULL)
 		z = 1;
 	else
