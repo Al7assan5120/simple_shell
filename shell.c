@@ -43,7 +43,6 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char *av[])
 		else
 			z = 0;
 		f = get_token(lineptr, d);
-		free(lineptr);
 		is_builtin(f);
 		execute(f, z);
 	}
