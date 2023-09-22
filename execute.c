@@ -8,7 +8,7 @@
 void execute(char **f)
 {
 	char *env[] = {NULL};
-	int pid, i;
+	int pid, i, x = 0;
 	char *path = NULL;
 	if (*f[0] != '/')
 	{
@@ -28,16 +28,19 @@ void execute(char **f)
 	else if (pid == 0)
 	{
 		if (path != NULL && f != NULL)
-		{
-			execve(path, f, env);
-			perror("execve"); }
+			x = execve(path, f, env);
 		else
 		{
 			perror("Null pointer passed to execve");
 			exit(EXIT_FAILURE); }
 	}
 	else
+	{
 		wait(NULL);
+		if (x == -1)
+			exit(2);
+	}
+		
 	if (path != f[0] && path != NULL)
 		free(path);
 	for (i = 0; f[i] != NULL; i++)

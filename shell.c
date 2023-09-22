@@ -11,7 +11,7 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char *av[])
 	size_t len = 0;
 	ssize_t x;
 	char **f;
-	int y, count;
+	int y, count, l;
 	int mode = shell_mode(ac);
 
 	if (mode == 3)
@@ -48,7 +48,11 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char *av[])
 			continue;
 		}
 		f = get_token(lineptr, d);
-		is_builtin(f);
+		l = is_builtin(f);
+		if (l == 1)
+		{
+			exit(EXIT_SUCCESS);
+		}
 		execute(f);
 	}
 	return (0);

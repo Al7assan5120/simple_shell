@@ -7,7 +7,7 @@ void non_interact_pipe(void)
 	char **f;
 	char *d = " \"|\n\t";
 	char *str_pipe;
-	int i, x, count;
+	int i, x, count, l;
 	char **s = _read_lines();
 
 	for (i = 0; s[i] != NULL; i++)
@@ -32,8 +32,25 @@ void non_interact_pipe(void)
 		x = is_builtin(f);
 		if (x == 1)
 		{
+			for (l = 0; f[l] != NULL; l++)
+			{
+				free(f[l]);
+			}
+			free(f);
 			free (s[i]);
 			free (s);
+			exit(EXIT_SUCCESS);
+		}
+		if (x == 3)
+		{
+			for (l = 0; f[l] != NULL; l++)
+			{
+				free(f[l]);
+			}
+			free(f);
+			free (s[i]);
+			free (s);
+			env();
 			exit(EXIT_SUCCESS);
 		}
 		execute(f);

@@ -8,8 +8,6 @@ int is_builtin(char **f)
 {
 	char *arr [] = {"exit", "cd", "env"};
 	int i;
-	int x = 0;
-
 	
 	for (i = 0; i < 3 ; i++)
 	{
@@ -20,19 +18,13 @@ int is_builtin(char **f)
 	switch (i)
 	{
 	case 0:
-		for (i = 0; f[x] != NULL; i++)
-		{
-			free(f[x]);
-			f[x] = NULL; }
-		free(f);
-		f = NULL;
 		return(1);
 		break;
 	case 1:
 		/*x = chdir (f[1]);*/
 		break;
 	case 2:
-		env();
+		return(3);
 		break;
 	}
 	return (0);
