@@ -15,13 +15,14 @@
 #define INREACT_MODE 1
 #define NON_INTERACT_PIPE 2
 #define NON_INTERACT_FILE 3
+#define STR_SIZE 256
 
 extern char **environ;
 
 int shell_mode(int ac);
 void non_interact_file(char *av[]);
 void non_interact_pipe(void);
-
+char** _read_lines();
 char **get_token(char *s, char *d);
 int is_builtin(char **f);
 char *_getenv(char *path_name);

@@ -38,7 +38,7 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char *av[])
 		else if (_strcmp(lineptr, "\n") == 0 || _strcmp(lineptr, "	\n") == 0
 		|| strstr(lineptr, enp) == lineptr)
 			continue;
-		if (_strchr(lineptr, '/') != NULL)
+		if (_strchr(lineptr, '/') != NULL && lineptr[0] == '\\')
 			z = 1;
 		else
 			z = 0;
