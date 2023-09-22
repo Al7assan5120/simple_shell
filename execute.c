@@ -5,10 +5,10 @@
  * @x: check for path
  * Return: pointer to environment variable array
  */
-void execute(char **f)
+int execute(char **f)
 {
 	char *env[] = {NULL};
-	int pid, i, x = 0;
+	int pid, i, status;
 	char *path = NULL;
 	if (*f[0] != '/')
 	{
@@ -28,7 +28,7 @@ void execute(char **f)
 	else if (pid == 0)
 	{
 		if (path != NULL && f != NULL)
-			x = execve(path, f, env);
+			execve(path, f, env);
 		else
 		{
 			perror("Null pointer passed to execve");
@@ -36,11 +36,9 @@ void execute(char **f)
 	}
 	else
 	{
-		wait(NULL);
-		if (x == -1)
-			exit(2);
+		wait(&status);
 	}
-		
+	
 	if (path != f[0] && path != NULL)
 		free(path);
 	for (i = 0; f[i] != NULL; i++)
@@ -49,4 +47,5 @@ void execute(char **f)
 		f[i] = NULL; }
 	free(f);
 	f = NULL;
+	return(WEXITSTATUS(status));
 }

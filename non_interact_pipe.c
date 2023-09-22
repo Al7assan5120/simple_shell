@@ -7,9 +7,8 @@ void non_interact_pipe(void)
 	char **f;
 	char *d = " \"|\n\t";
 	char *str_pipe;
-	int i, x, count, l;
+	int i, x, count, l, k;
 	char **s = _read_lines();
-
 	for (i = 0; s[i] != NULL; i++)
 	{
 		str_pipe = s[i];
@@ -24,8 +23,11 @@ void non_interact_pipe(void)
 		}
 		if ((count) == _strlen(str_pipe))
 		{
-			free (s[i]);
-			free (s);
+			for (l = 0; s[l] != NULL; l++)
+			{
+				free (s[l]);
+			}
+				free (s);
 			exit(EXIT_SUCCESS);
 		}
 		f = get_token(str_pipe, d);
@@ -53,7 +55,16 @@ void non_interact_pipe(void)
 			env();
 			exit(EXIT_SUCCESS);
 		}
-		execute(f);
+		k = execute(f);
+		if (k != 0)
+		{
+			for (l = 0; s[l] != NULL; l++)
+				{
+					free(s[l]);
+				}
+				free(s);
+				exit(k);
+		}
 		free (s[i]);
 	}
 	free (s);

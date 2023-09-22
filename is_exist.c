@@ -32,11 +32,11 @@ char *_is_exist(char *program_name)
 			break; }
 		else if (stat(s, &st) == -1 && itr >= path_tok_no)
 		{
-			perror("command not found");
+			perror("stat");
 			for (i = 0; v[i] != NULL; i++)
 				free(v[i]);
 			_free(5, program_name, v, s, x, z);
-			exit(1); }
+			exit(127); }
 		else
 		{
 			_free(2, s, x);

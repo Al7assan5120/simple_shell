@@ -2,7 +2,7 @@
 
 char** _read_lines()
 {
-    char str[STR_SIZE];
+    char str[200000];
     char** lines = NULL;
     char** temp;
     char* line;
