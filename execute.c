@@ -5,19 +5,23 @@
  * @x: check for path
  * Return: pointer to environment variable array
  */
-void execute(char **f, int x)
+void execute(char **f)
 {
 	char *env[] = {NULL};
 	int pid, i;
 	char *path = NULL;
-
-	if (x == 0)
+	if (*f[0] != '/')
 	{
-		path = _is_exist(f[0]);
+		if (_strstr(f[0], "./") != NULL)
+			path = f[0];
+		else
+			path = _is_exist(f[0]);
 		if (path == NULL)
 			perror("_is_exist returned NULL"); }
-	else if (x == 1)
+	
+	if (*f[0] == '/')
 		path = f[0];
+
 	pid = fork();
 	if (pid == -1)
 		exit(EXIT_FAILURE);

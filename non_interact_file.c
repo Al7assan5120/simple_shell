@@ -11,7 +11,6 @@ void non_interact_file(char *av[])
 	FILE *fp = NULL;
 	char str[100];
 	char *ex_str;
-	int z;
 
 	fp = fopen(av[1], "r");
 	if (fp == NULL)
@@ -27,13 +26,8 @@ void non_interact_file(char *av[])
 			fclose(fp);
 			exit(1);
 		}
-
-		if (_strchr(str, '/') != NULL)
-			z = 1;
-		else
-			z = 0;
 		f = get_token(ex_str, d);
 		is_builtin(f);
-		execute(f, z);
+		execute(f);
 	}
 }

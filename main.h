@@ -29,7 +29,7 @@ char *_getenv(char *path_name);
 char **tok_path(char *env_path);
 char *_strcat(char *dest, char *src);
 char *_is_exist(char *program_name);
-void execute(char **f, int x);
+void execute(char **f);
 int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
 int _strlen(char *s);

@@ -7,11 +7,11 @@
  */
 int main(__attribute__((unused)) int ac,  __attribute__((unused)) char *av[])
 {
-	char *lineptr = NULL, *d = "_ \n\t", *enp = " ";
+	char *lineptr = NULL, *d = " \"\n\t";
 	size_t len = 0;
 	ssize_t x;
 	char **f;
-	int z, y;
+	int y, count;
 	int mode = shell_mode(ac);
 
 	if (mode == 3)
@@ -35,16 +35,21 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char *av[])
 		{
 			free(lineptr);
 			exit(EOF); }
-		else if (_strcmp(lineptr, "\n") == 0 || _strcmp(lineptr, "	\n") == 0
-		|| strstr(lineptr, enp) == lineptr)
+		else if (_strcmp(lineptr, "\n") == 0 || _strcmp(lineptr, "	\n") == 0)
 			continue;
-		if (_strchr(lineptr, '/') != NULL && lineptr[0] == '\\')
-			z = 1;
-		else
-			z = 0;
+		for (count = 0; lineptr[count] != '\0'; count++)
+		{
+			if (lineptr[count] != ' ')
+				break;
+		}
+		if ((count + 1) == _strlen(lineptr))
+		{
+			/*free(lineptr);*/
+			continue;
+		}
 		f = get_token(lineptr, d);
 		is_builtin(f);
-		execute(f, z);
+		execute(f);
 	}
 	return (0);
 }
