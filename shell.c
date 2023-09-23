@@ -11,15 +11,12 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char *av[])
 	size_t len = 0;
 	ssize_t x;
 	char **f;
-	int y, count, l;
-	int mode = shell_mode(ac);
+	int y, count, l, mode = shell_mode(ac);
 
 	if (mode == 3)
-	{
-		non_interact_file(av); }
+		non_interact_file(av);
 	if (mode == 2)
-	{
-		non_interact_pipe(); }
+		non_interact_pipe();
 	while (mode == 1)
 	{
 		y = write(STDOUT_FILENO, "#cisfun$ ", 10);
@@ -31,10 +28,6 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char *av[])
 			write(1, "\n", 1);
 			free(lineptr);
 			exit(0); }
-		if (x == -1)
-		{
-			free(lineptr);
-			exit(EOF); }
 		else if (_strcmp(lineptr, "\n") == 0 || _strcmp(lineptr, "	\n") == 0)
 			continue;
 		for (count = 0; lineptr[count] != '\0'; count++)
@@ -43,16 +36,11 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char *av[])
 				break;
 		}
 		if ((count + 1) == _strlen(lineptr))
-		{
-			/*free(lineptr);*/
 			continue;
-		}
 		f = get_token(lineptr, d);
 		l = is_builtin(f);
 		if (l == 1)
-		{
 			exit(EXIT_SUCCESS);
-		}
 		execute(f);
 	}
 	return (0);

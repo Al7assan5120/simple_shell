@@ -11,12 +11,12 @@ void non_interact_file(char *av[])
 	FILE *fp = NULL;
 	char str[100000];
 	char *ex_str;
-	char * err= "./hsh: 0: cannot open /tmp/hbtn_checker_tmp_27116: No such file\n";
+	char *err = "./hsh: 0: cannot open";
 
 	fp = fopen(av[1], "r");
 	if (fp == NULL)
 	{
-		write(2,err,(_strlen(err)));
+		write(2, err, (_strlen(err)) + 1);
 		exit(2);
 	}
 	while (!feof(fp))

@@ -16,7 +16,7 @@ char **get_token(char *s, char *d)
 	tokens = malloc(10000 * sizeof(char *));
 	if (tokens == NULL)
 		return (NULL);
-	if (s == NULL )
+	if (s == NULL)
 	{
 		free(tokens);
 		exit(EXIT_SUCCESS);
