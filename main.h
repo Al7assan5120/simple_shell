@@ -42,5 +42,7 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 char *_fgets(char *string, int n, FILE *s);
 void _free(int count, ...);
 void env(void);
+void free_3(char **f);
+void free_2(int k, char **s);
 
 #endif
