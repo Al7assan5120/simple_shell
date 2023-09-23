@@ -1,4 +1,3 @@
-/bin/ls /var
-/bin/echo Holberton
-env
-exit
+/bin/ls
+
+ls

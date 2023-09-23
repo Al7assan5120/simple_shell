@@ -25,7 +25,7 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char *av[])
 		y = write(STDOUT_FILENO, "#cisfun$ ", 10);
 		if (y == -1)
 			return (-1);
-		x = getline(&lineptr, &len, stdin);
+		x = _getline(&lineptr, &len, stdin);
 		if (x == EOF)
 		{
 			write(1, "\n", 1);

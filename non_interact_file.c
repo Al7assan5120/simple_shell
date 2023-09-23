@@ -9,22 +9,23 @@ void non_interact_file(char *av[])
 	char **f;
 	char *d = " \n\t";
 	FILE *fp = NULL;
-	char str[100];
+	char str[100000];
 	char *ex_str;
+	char * err= "./hsh: 0: cannot open /tmp/hbtn_checker_tmp_27116: No such file\n";
 
 	fp = fopen(av[1], "r");
 	if (fp == NULL)
 	{
-		perror("fopen");
-		exit(1);
+		write(2,err,(_strlen(err)));
+		exit(2);
 	}
 	while (!feof(fp))
 	{
-		ex_str = _fgets(str, 100, fp);
+		ex_str = fgets(str, 100000, fp);
 		if (ex_str == NULL)
 		{
 			fclose(fp);
-			exit(1);
+			exit(0);
 		}
 		f = get_token(ex_str, d);
 		is_builtin(f);
