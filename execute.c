@@ -2,7 +2,6 @@
 /**
  * execute - function that executes a command line
  * @f: command
- * @x: check for path
  * Return: pointer to environment variable array
  */
 int execute(char **f)

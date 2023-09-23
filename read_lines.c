@@ -1,5 +1,8 @@
 #include "main.h"
-
+/**
+ * _read_lines - function
+ * Return: char
+ */
 char **_read_lines(void)
 {
 	char str[200000];
