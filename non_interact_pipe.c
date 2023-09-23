@@ -4,11 +4,10 @@
  */
 void non_interact_pipe(void)
 {
-	char **f;
-	char *d = " \"|\n\t";
-	char *str_pipe;
+	char **f, **s = _read_lines();
+	char *d = " \"|\n\t", *str_pipe;
 	int i, x, count, l, k;
-	char **s = _read_lines();
+
 	for (i = 0; s[i] != NULL; i++)
 	{
 		str_pipe = s[i];
@@ -17,55 +16,65 @@ void non_interact_pipe(void)
 		for (count = 0; str_pipe[count] != '\0'; count++)
 		{
 			if (str_pipe[count] != ' ')
-			{
-				break;
-			}
-		}
+				break; }
 		if ((count) == _strlen(str_pipe))
 		{
 			for (l = 0; s[l] != NULL; l++)
-			{
-				free (s[l]);
-			}
-				free (s);
-			exit(EXIT_SUCCESS);
-		}
+				free(s[l]);
+			free(s);
+			exit(EXIT_SUCCESS); }
 		f = get_token(str_pipe, d);
 		x = is_builtin(f);
 		if (x == 1)
 		{
-			for (l = 0; f[l] != NULL; l++)
-			{
-				free(f[l]);
-			}
-			free(f);
-			free (s[i]);
-			free (s);
-			exit(EXIT_SUCCESS);
-		}
+			free_3(f);
+			free(s[i]);
+			free(s);
+			exit(EXIT_SUCCESS); }
 		if (x == 3)
 		{
-			for (l = 0; f[l] != NULL; l++)
-			{
-				free(f[l]);
-			}
-			free(f);
-			free (s[i]);
-			free (s);
+			free_3(f);
+			free(s[i]);
+			free(s);
 			env();
-			exit(EXIT_SUCCESS);
-		}
+			exit(EXIT_SUCCESS); }
 		k = execute(f);
 		if (k != 0)
-		{
-			for (l = 0; s[l] != NULL; l++)
-				{
-					free(s[l]);
-				}
-				free(s);
-				exit(k);
-		}
-		free (s[i]);
+			free_2(k, s);
+		free(s[i]); }
+	free(s);
+}
+
+/**
+ * free_2 - fafafafaf
+ * @s: string
+ * @k: int
+ */
+
+void free_2(int k, char **s)
+{
+	int l;
+
+	for (l = 0; s[l] != NULL; l++)
+	{
+		free(s[l]);
 	}
-	free (s);
+	free(s);
+	exit(k);
+}
+
+/**
+ * free_3 - fafafafaf
+ * @f: string
+ */
+
+void free_3(char **f)
+{
+	int l;
+
+	for (l = 0; f[l] != NULL; l++)
+	{
+		free(f[l]);
+	}
+	free(f);
 }

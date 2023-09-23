@@ -10,6 +10,7 @@ int execute(char **f)
 	char *env[] = {NULL};
 	int pid, i, status;
 	char *path = NULL;
+
 	if (*f[0] != '/')
 	{
 		if (_strstr(f[0], "./") != NULL)
@@ -18,7 +19,6 @@ int execute(char **f)
 			path = _is_exist(f[0]);
 		if (path == NULL)
 			perror("_is_exist returned NULL"); }
-	
 	if (*f[0] == '/')
 		path = f[0];
 
@@ -38,7 +38,6 @@ int execute(char **f)
 	{
 		wait(&status);
 	}
-	
 	if (path != f[0] && path != NULL)
 		free(path);
 	for (i = 0; f[i] != NULL; i++)
@@ -47,5 +46,5 @@ int execute(char **f)
 		f[i] = NULL; }
 	free(f);
 	f = NULL;
-	return(WEXITSTATUS(status));
+	return (WEXITSTATUS(status));
 }
